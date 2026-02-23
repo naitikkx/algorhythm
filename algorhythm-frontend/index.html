@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorhythm — Playlist DNA Analyzer</title>
+  <meta name="description" content="Analyze Spotify playlists to extract their musical DNA using advanced audio feature analysis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Background animated blobs -->
+    <div class="bg-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">◉</span>
+        <h1>algorhythm</h1>
+      </div>
+      <p class="tagline">decode your playlist's DNA</p>
+    </header>
+
+    <!-- Step 1: Playlist Input -->
+    <section id="step-input" class="card step active">
+      <div class="step-indicator">
+        <div class="step-dot active">1</div>
+        <div class="step-line"></div>
+        <div class="step-dot">2</div>
+        <div class="step-line"></div>
+        <div class="step-dot">3</div>
+      </div>
+
+      <h2>Paste your playlist</h2>
+      <p class="subtitle">Drop a Spotify playlist link to begin analysis</p>
+
+      <form id="playlist-form" class="input-group">
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+          </svg>
+          <input
+            type="text"
+            id="playlist-url"
+            placeholder="https://open.spotify.com/playlist/..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <button type="submit" id="analyze-btn" class="btn btn-primary">
+          <span class="btn-text">Analyze</span>
+          <span class="btn-loader" hidden>
+            <span class="spinner"></span>
+          </span>
+        </button>
+      </form>
+
+      <div id="error-toast" class="error-toast" hidden>
+        <span class="error-icon">⚠</span>
+        <span id="error-message"></span>
+      </div>
+    </section>
+
+    <!-- Step 2: Track Selection -->
+    <section id="step-tracks" class="card step" hidden>
+      <div class="step-indicator">
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot active">2</div>
+        <div class="step-line"></div>
+        <div class="step-dot">3</div>
+      </div>
+
+      <div class="tracks-header">
+        <div>
+          <h2 id="playlist-title">Playlist Name</h2>
+          <p class="subtitle" id="track-count-label">0 tracks found</p>
+        </div>
+        <div class="tracks-actions">
+          <button id="select-all-btn" class="btn btn-ghost">Select All</button>
+          <button id="deselect-all-btn" class="btn btn-ghost">Deselect All</button>
+        </div>
+      </div>
+
+      <div id="track-list" class="track-list"></div>
+
+      <div class="bottom-bar">
+        <div class="selection-info">
+          <span id="selected-count">0</span> tracks selected
+        </div>
+        <div class="bottom-actions">
+          <button id="back-btn" class="btn btn-ghost">← Back</button>
+          <button id="build-dna-btn" class="btn btn-primary btn-glow">
+            <span class="btn-text">🧬 Build DNA</span>
+            <span class="btn-loader" hidden>
+              <span class="spinner"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: DNA Results -->
+    <section id="step-results" class="card step" hidden>
+      <div class="step-indicator">
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot active">3</div>
+      </div>
+
+      <h2>🧬 Playlist DNA</h2>
+      <p class="subtitle" id="dna-playlist-name">—</p>
+
+      <div id="dna-results" class="dna-grid"></div>
+
+      <div class="bottom-bar">
+        <button id="restart-btn" class="btn btn-ghost">← Analyze Another</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
