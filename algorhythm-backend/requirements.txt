@@ -9,3 +9,4 @@ python-dotenv==1.0.1
 pydantic==2.6.0
 requests==2.31.0
 networkx==3.2.1
+google-generativeai
